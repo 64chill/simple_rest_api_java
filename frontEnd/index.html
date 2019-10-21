@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Front-end app for Java REST-API</title>
+    <style>
+      #todo div button , #product div button{
+        margin: 5px;
+        margin-top:20px;
+        margin-bottom: 20px;
+      }
+      #product-response , #todo-response{
+        margin-bottom: 300px;
+      }
+      </style>
+  </head>
+  <body>
+    <!-------------------- navbar -------------------------------------------------------------->
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Front-end app for Java REST-API</a>
+    </nav>
+    <!-------------------- TABS -------------------------------------------------------------->
+    <div class="container">
+
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#todo">Todo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#product">Products</a>
+        </li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <!-------------------- todo -------------------------------------------------------------->
+        <div class="tab-pane fade active show" id="todo">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary" id="button_get_all_todos">GET TODOS</button>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#getUniqueModal">Get unique Todo</button>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#putTodoActiveModal">Change Active status</button>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#putTodoTextModal">Change Todo text</button>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#deleteTodoModal">DELETE Todo</button>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addTodoModal">ADD new Todo</button>
+          </div>
+          <div class="border border-dark" id="todo-response">
+
+          </div>
+        </div>
+        <!-------------------- products -------------------------------------------------------------->
+        <div class="tab-pane fade" id="product">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-info" id="button_get_all_products">GET PRODUCTS</button>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#getUniqueProductModal">Get unique Product</button>
+            <button type="button" class="btn btn-info" id="button_get_sum_of_products">Get Sum of sold products</button>
+            <button type="button" class="btn btn-info" id="button_get_income_sum">Get All income sum</button>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#putProductPriceModal">Update Product Price</button>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addProductModal">ADD new Product</button>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#delteProductModal">Delete Product</button>
+          </div>
+          <div class="border border-dark"  id="product-response">
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!------------------------------ MODALS ------------------------------------------------------------>
+    <!-------------------------- TODO MODALS ----------------------------------------------------------->
+    <!-------------------------- TODO MODALS ----------------------------------------------------------->
+    <!-------------------------- TODO MODALS ----------------------------------------------------------->
+    <!-------------------------- TODO MODALS ----------------------------------------------------------->
+    <!-------------------------- TODO MODALS ----------------------------------------------------------->
+    <!-------------------------- TODO MODALS ----------------------------------------------------------->
+<!-- getUniqueModal -->
+      <div class="modal fade" id="getUniqueModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Get Unique TODO</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <label class="col-form-label" for="inputDefault">Please enter the todo ID to show</label>
+                <input type="number" class="form-control" id="get_unique_inputID">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="button_get_unique_todo" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- putTodoActiveModal -->
+      <div class="modal fade" id="putTodoActiveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Todo Active status</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <label class="col-form-label" for="inputDefault">Please enter the todo ID</label>
+                  <input type="number" class="form-control" id="put_todo_active_id_input">
+
+                  <label for="put_todo_active_active">Select the active status</label>
+                    <select class="form-control" id="put_todo_active_active_select">
+                      <option>TRUE</option>
+                      <option>FALSE</option>
+                    </select>
+              </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="button_put_todo_active" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!-- putTodoTextModal -->
+        <div class="modal fade" id="putTodoTextModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Update Todo Text</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <label class="col-form-label" for="inputDefault">Please enter the todo ID</label>
+                    <input type="number" class="form-control" id="put_todo_text_id_input">
+
+                    <label class="col-form-label" for="inputDefault">Please enter new TEXT</label>
+                    <input type="text" class="form-control" id="put_todo_text_text_input">
+
+                </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" id="button_put_todo_text" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+<!-- deleteTodoModal -->
+        <div class="modal fade" id="deleteTodoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">DELETE TODO</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                  <div class="modal-body">
+                      <label class="col-form-label" for="inputDefault">Please enter the todo ID</label>
+                      <input type="number" class="form-control" id="delete_todo_id_input">
+
+                  </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="button_delete_todo" class="btn btn-danger">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<!-- addTodoModal -->
+          <div class="modal fade" id="addTodoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ADD TODO</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <label class="col-form-label" for="inputDefault">Please enter the TEXT for new todo</label>
+                        <input type="text" class="form-control" id="post_todo_text_input">
+                    </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" id="button_add_todo" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    <!-------------------------- PRODUCT MODALS -------------------------------------------------------->
+    <!-------------------------- PRODUCT MODALS -------------------------------------------------------->
+    <!-------------------------- PRODUCT MODALS -------------------------------------------------------->
+    <!-------------------------- PRODUCT MODALS -------------------------------------------------------->
+    <!-------------------------- PRODUCT MODALS -------------------------------------------------------->
+    <!-------------------------- PRODUCT MODALS -------------------------------------------------------->
+    <!-------------------------- PRODUCT MODALS -------------------------------------------------------->
+<!-- getUniqueProductModal -->
+      <div class="modal fade" id="getUniqueProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Get Unique Product</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <label class="col-form-label" for="inputDefault">Please enter the product ID to show</label>
+                <input type="number" class="form-control" id="get_unique_product_id">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="button_get_unique_product" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+<!-- putProductPriceModal -->
+      <div class="modal fade" id="putProductPriceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update Product Price</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <label class="col-form-label" for="inputDefault">Please enter the product ID to show</label>
+                <input type="number" class="form-control" id="put_product_price_id_input">
+
+                <label class="col-form-label" for="inputDefault">Please enter new Product Price</label>
+                  <input type="number" class="form-control" id="put_product_price_price_input" step="0.01">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="button_put_product_price" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<!-- addProductModal -->
+      <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update Product Price</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label class="col-form-label" for="inputDefault">Please enter product Name</label>
+              <input type="text" class="form-control" id="post_product_name">
+
+              <label class="col-form-label" for="inputDefault">Please enter product Description</label>
+                <textarea class="form-control" id="post_product_description" rows="2"></textarea>
+
+              <label class="col-form-label" for="inputDefault">Please enter Product Price</label>
+                <input type="number" class="form-control" id="post_product_price" step="0.01">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="button_add_new_product" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- delteProductModal -->
+      <div class="modal fade" id="delteProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Delete Product</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <label class="col-form-label" for="inputDefault">Please enter the product ID to DELETE</label>
+                <input type="number" class="form-control" id="delete_product_id">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="button_deete_product" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <script
+  			  src="https://code.jquery.com/jquery-3.4.1.js"
+  			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  			  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="todo_funct.js"></script>
+    <script src="products_funct.js"></script>
+
+  </body>
+</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                

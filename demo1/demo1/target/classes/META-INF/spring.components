@@ -1,0 +1,5 @@
+#
+#Thu Jun 20 19:55:55 GMT+01:00 2019
+com.example.demo1.Demo1Application=org.springframework.stereotype.Component
+com.example.demo1.todos.TodoResource=org.springframework.stereotype.Component
+com.example.demo1.todos.TodoDaoService=org.springframework.stereotype.Component
